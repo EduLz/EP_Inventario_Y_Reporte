@@ -86,6 +86,7 @@ function crearTabla(){
         return;
     }
 
+    //generar cdada fila por separado y agregarla al cuerpo de la tabla
     listaParaMostrar.forEach(function(prod){
         const fila = document.createElement("tr");
         fila.innerHTML = `
@@ -93,7 +94,7 @@ function crearTabla(){
             <td>${formeatearMoneda(prod.precio)}</td>
             <td>${prod.cantidad}</td>
             <td>${formeatearMoneda(prod.precio * prod.cantidad)}</td>
-            <td><button class="btn btn-danger" onclick="eliminarProducto(${prod.id})">Eliminar</button></td>
+            <td><button class="boton-eliminar" onclick="eliminarProducto(${prod.id})">Eliminar</button></td>
         `;
         cuerpoTabla.appendChild(fila);
     });
