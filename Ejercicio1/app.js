@@ -12,9 +12,9 @@ const mensajeError = document.getElementById("mensaje-error");
 const cuerpoTabla = document.getElementById("cuerpo-tabla");
 const campoBusqueda = document.getElementById("campo-busqueda");
 
-const totalDiferentes = document.getElementById("total-diferentes");
-const totalUnidades = document.getElementById("total-unidades");
-const totalValor = document.getElementById("total-valor");
+const elTotalDiferentes = document.getElementById("total-diferentes");
+const elTotalUnidades = document.getElementById("total-unidades");
+const elTotalValor = document.getElementById("total-valor");
 
 
 //funciones auxiliares - para formato y error----------------------------
@@ -51,6 +51,24 @@ if (isNaN(cantidad) || !Number.isInteger(cantidad) || cantidad <= 0){
 }
 mostrarError(""); //limpiar mensaje de error si todo está bien
 return true;
+}
+
+//calcular totales-----------------------------------------------
+function calcularTotales(){
+    const productosDiferentes = productos.length; //total productos diferentes
+
+    const totalUnidades = productos.reduce(function(acumulador, prod){ //total inventario
+        return acumulador + prod.cantidad;
+    }, 0);
+
+    const totalValor = productos.reduce(function(acumulador, prod){ //valor total inventario
+        return acumulador + (prod.precio * prod.cantidad);
+    }, 0);
+
+    //actualizar los valores en el HTML
+    elTotalDiferentes.textContent = productosDiferentes;
+    elTotalUnidades.textContent = totalUnidades;
+    elTotalValor.textContent = formeatearMoneda(totalValor);
 }
 
 //insertar productos en la tabla y busqueda de productos---------------------------------
@@ -117,24 +135,6 @@ calcularTotales();
 
 });  
 
-//calcular totales-----------------------------------------------
-function calcularTotales(){
-    const productosDiferentes = productos.length;
-
-    const totalUnidades = productos.reduce(function(acumulador, prod){
-        return acumulador + prod.cantidad;
-    }, 0);
-
-    const totalValor = productos.reduce(function(acumulador, prod){
-        return acumulador + (prod.precio * prod.cantidad);
-    }, 0);
-
-    //actualizar los valores en el HTML
-    totalDiferentes.textContent = productosDiferentes;
-    totalUnidades.textContent = totalUnidades;
-    totalValor.textContent = formeatearMoneda(totalValor);
-}
-
 //funcion eliminar producto-----------------------------------------------
 window.eliminarProducto = function(id){
     productos = productos.filter(function(prod){
@@ -146,3 +146,11 @@ window.eliminarProducto = function(id){
     //actualizar los totales
     calcularTotales();
 };
+
+//funcion busqueda de productos-----------------------------------------------
+campoBusqueda.addEventListener("input", function(){
+    crearTabla();
+});
+
+crearTabla(); //inicializar la tabla vacía
+calcularTotales(); //inicializar los totales en cero
