@@ -45,8 +45,8 @@ if (isNaN(precio) || precio <= 0){
     return false;
 }
 
-if (isNaN(cantidad) || !Number.isInteger(cantidad) || cantidad <= 0){
-    mostrarError("La cantidad debe ser un número entero mayor que cero.");
+if (isNaN(cantidad) || !Number.isInteger(cantidad) || cantidad < 0){
+    mostrarError("La cantidad debe ser un número entero no negativo.");
     return false;
 }
 mostrarError(""); //limpiar mensaje de error si todo está bien
