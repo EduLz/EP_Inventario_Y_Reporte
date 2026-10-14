@@ -1,0 +1,200 @@
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  font-family: Arial, Helvetica, sans-serif;
+  background-color: #f7f9fa;
+  color: #222222;
+  line-height: 1.5;
+  padding: 20px;
+}
+
+.contenedor {
+  max-width: 850px;
+  margin: 0 auto;
+}
+
+h1 {
+  font-size: 1.8rem;
+  margin-bottom: 20px;
+  color: #111111;
+}
+
+h2 {
+  font-size: 1.2rem;
+  margin-bottom: 12px;
+  color: #333333;
+}
+
+/* 1. Panel de Estadísticas (Tarjetas Simples) */
+.seccion-estadisticas {
+  display: flex;
+  gap: 15px;
+  margin-bottom: 25px;
+  flex-wrap: wrap;
+}
+
+.tarjetas-metricas {
+  flex: 1;
+  min-width: 180px;
+  background-color: #ffffff;
+  border: 1px solid #d0d7de;
+  border-radius: 4px;
+  padding: 15px;
+}
+
+.metricas-etiqueta {
+  display: block;
+  font-size: 0.85rem;
+  color: #555555;
+  margin-bottom: 5px;
+}
+
+.metricas-valor {
+  display: block;
+  font-size: 1.5rem;
+  font-weight: bold;
+  color: #111111;
+}
+
+/* 2. Sección del Formulario */
+.seccion-formulario {
+  background-color: #ffffff;
+  border: 1px solid #d0d7de;
+  border-radius: 4px;
+  padding: 20px;
+  margin-bottom: 25px;
+}
+
+#formulario-producto {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  gap: 15px;
+  align-items: flex-end;
+}
+
+.grupo-campo {
+  display: flex;
+  flex-direction: column;
+}
+
+.grupo-campo label {
+  font-size: 0.9rem;
+  font-weight: bold;
+  margin-bottom: 5px;
+  color: #333333;
+}
+
+input[type="text"],
+input[type="number"] {
+  padding: 8px 10px;
+  border: 1px solid #cccccc;
+  border-radius: 4px;
+  font-size: 0.95rem;
+}
+
+input[type="text"]:focus,
+input[type="number"]:focus {
+  outline: none;
+  border-color: #0969da;
+}
+
+/* Mensajes de error */
+.error-texto {
+  display: none;
+  background-color: #ffebe9;
+  color: #cf222e;
+  border: 1px solid #ff8182;
+  padding: 8px 12px;
+  border-radius: 4px;
+  font-size: 0.9rem;
+  margin-bottom: 15px;
+}
+
+/* 3. Botones */
+button {
+  padding: 9px 16px;
+  font-size: 0.95rem;
+  border-radius: 4px;
+  cursor: pointer;
+  border: 1px solid transparent;
+  font-weight: normal;
+}
+
+.boton-primario {
+  background-color: #0969da;
+  color: #ffffff;
+}
+
+.boton-primario:hover {
+  background-color: #0752a7;
+}
+
+.boton-eliminar {
+  background-color: #cf222e;
+  color: #ffffff;
+  padding: 5px 10px;
+  font-size: 0.85rem;
+}
+
+.boton-eliminar:hover {
+  background-color: #a40e26;
+}
+
+/* 4. Tabla y Búsqueda */
+.seccion-tabla {
+  background-color: #ffffff;
+  border: 1px solid #d0d7de;
+  border-radius: 4px;
+  padding: 20px;
+}
+
+.cabecera-tabla {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 15px;
+  flex-wrap: wrap;
+  gap: 10px;
+}
+
+.grupo-busqueda {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.grupo-busqueda label {
+  font-size: 0.9rem;
+  font-weight: bold;
+}
+
+.tabla-datos {
+  width: 100%;
+  border-collapse: collapse;
+  text-align: left;
+}
+
+.tabla-datos th,
+.tabla-datos td {
+  padding: 10px;
+  border-bottom: 1px solid #e1e4e8;
+  font-size: 0.95rem;
+}
+
+.tabla-datos th {
+  background-color: #f6f8fa;
+  color: #333333;
+}
+
+.tabla-datos tbody tr:hover {
+  background-color: #f9f9f9;
+}
+
+.texto-centrado {
+  text-align: center;
+  color: #666666;
+}

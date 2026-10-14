@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ejercicio 1</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+
+    <main class="contenedor">   
+        <h1>Inventario</h1>
+        <!-- Panel -->
+        <section class="seccion-estadisticas">
+            <div class="tarjetas-metricas">
+                <span class="metricas-etiqueta">Productos Diferentes</span>
+                <span class="metricas-valor" id="total-diferentes">0</span>
+            </div>
+
+            <div class="tarjetas-metricas">
+                <span class="metricas-etiqueta">Total de Unidades</span>
+                <span class="metricas-valor" id="total-unidades">0</span>
+            </div>
+
+            <div class="tarjetas-metricas">
+                <span class="metricas-etiqueta">Valor del Inventario</span>
+                <span class="metricas-valor" id="total-valor">Q0.00</span>
+            </div>
+        </section>
+
+        <!-- Formulario de registro -->
+         <section class="seccion-formulario"> 
+            <h2>Registrar Producto</h2>
+            <div id="mensaje-error" class="error-texto"></div>
+
+            <form id="formulario-producto">
+                <div class="grupo-campo">
+                    <label for="campo-nombre">Nombre del Producto</label>
+                    <input type="text" id="campo-nombre" placeholder="Ingrese el nombre del producto">
+                </div>
+
+                <div class="grupo-campo">
+                    <label for="campo-precio">Precio</label>
+                    <input type="number" step ="0.01" min="0.01" id="campo-precio" placeholder="Ingrese el precio (0.00)">
+                </div>
+
+                <div class="grupo-campo">
+                    <label for="campo-cantidad">Cantidad</label>
+                    <input type="number" step="1" min="1" id="campo-cantidad" placeholder="Ingrese la cantidad (unidades)">
+                </div>
+
+                <button type="submit" id="boton-registrar" class="boton-primario">Registrar Producto</button>
+            </form>
+         </section>
+
+         <!-- Tabla de productos -->
+          <section class="seccion-tabla">
+            <div class="cabecera-tabla">
+                <h2>Productos Registrados</h2>
+                <div class ='grupo-busqueda'>
+                    <label for="campo-busqueda">Buscar:</label>
+                    <input type="text" id="campo-busqueda" placeholder="Ingrese el nombre del producto">
+                </div>
+            </div>
+
+            <table id="tabla-productos" class="tabla-datos">
+                <thead>
+                    <tr>
+                        <th>Nombre</th>
+                        <th>Precio</th>
+                        <th>Cantidad</th>
+                        <th>Total</th>
+                        <th>Acciones</th>
+                    </tr>
+                </thead>
+                <tbody id="cuerpo-tabla">
+                    <!-- Los productos se agregarán dinámicamente aquí -->
+                </tbody>
+          </section>
+    </main>
+
+    <script src="app.js"></script>
+</body>
+</html>
