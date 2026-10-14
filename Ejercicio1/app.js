@@ -17,8 +17,7 @@ const totalUnidades = document.getElementById("total-unidades");
 const totalValor = document.getElementById("total-valor");
 
 
-//funciones auxiliares - para formeto y error
-
+//funciones auxiliares - para formato y error----------------------------
 function formeatearMoneda(monto){
     return 'Q' + monto.toFixed(2);
 }
@@ -32,7 +31,8 @@ function mostrarError(mensaje){
         mensajeError.style.display = "none";
     }
 }
-//validaciones iniciales
+
+//validaciones iniciales---------------------------------------------
 function validarDatos(nombre, precio, cantidad){
 
 if (nombre.trim() === ""){
@@ -53,7 +53,7 @@ mostrarError(""); //limpiar mensaje de error si todo está bien
 return true;
 }
 
-//insertar producto en la tabla
+//insertar productos en la tabla y busqueda de productos---------------------------------
 function crearTabla(){
     const terminoBusqueda = campoBusqueda.value.trim().toLowerCase();
 
@@ -82,7 +82,7 @@ function crearTabla(){
 
 }
 
-//funcion - registrar producto
+//funcion - registrar producto sin recargar la pagina------------------------------------
 formulario.addEventListener("submit", function(evento){
     evento.preventDefault();
 
@@ -95,6 +95,7 @@ if (!validarDatos(nombre, precio, cantidad)){
     return;
 }
 
+//se crea el objeto producto con los datos del formulario
 const nuevoProducto = {
     id: Date.now(), //identificador en milisegundos ya que no se repite (para no usar IDs secuenciales)
     nombre: nombre.trim(),
@@ -102,19 +103,46 @@ const nuevoProducto = {
     cantidad: cantidad
 };
 
-
 //se agregan los productos al array
 productos.push(nuevoProducto);
-
-
 
 //limpiar formulario
 formulario.reset();
 campoNombre.focus();
 
-
-
 //actualizar la tabla
 crearTabla();
+//actualizar los totales
+calcularTotales();
 
 });  
+
+//calcular totales-----------------------------------------------
+function calcularTotales(){
+    const productosDiferentes = productos.length;
+
+    const totalUnidades = productos.reduce(function(acumulador, prod){
+        return acumulador + prod.cantidad;
+    }, 0);
+
+    const totalValor = productos.reduce(function(acumulador, prod){
+        return acumulador + (prod.precio * prod.cantidad);
+    }, 0);
+
+    //actualizar los valores en el HTML
+    totalDiferentes.textContent = productosDiferentes;
+    totalUnidades.textContent = totalUnidades;
+    totalValor.textContent = formeatearMoneda(totalValor);
+}
+
+//funcion eliminar producto-----------------------------------------------
+window.eliminarProducto = function(id){
+    productos = productos.filter(function(prod){
+        return prod.id !== id;
+    });
+
+    //actualizar la tabla
+    crearTabla();
+    //actualizar los totales
+    calcularTotales();
+};
